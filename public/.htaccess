@@ -1,0 +1,28 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /
+
+    # If the requested file or directory doesn't exist, route through index.php
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^(.*)$ index.php/$1 [L,QSA]
+</IfModule>
+
+# Prevent directory listing
+Options -MultiViews
+Options -Indexes
+
+# Protect sensitive files
+<FilesMatch "\.(env|htaccess|htpasswd|ini|log|sh|sql|yml|yaml)$">
+    Require all denied
+</FilesMatch>
+
+# Protect composer files
+<FilesMatch "^(composer\.(json|lock))$">
+    Require all denied
+</FilesMatch>
+
+# Protect the spark CLI file from web access
+<Files "spark">
+    Require all denied
+</Files>

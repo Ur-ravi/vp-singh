@@ -1,0 +1,8 @@
+<div class="flex items-center justify-between mb-6">
+    <p class="text-sm text-gray-500"><?= count($faqs ?? []) ?> FAQs</p>
+    <a href="/admin/faqs/create" class="bg-charcoal text-white px-5 py-2 rounded-lg text-sm font-medium hover:bg-gray-800 transition">+ Add FAQ</a>
+</div>
+<div class="bg-white rounded-lg shadow overflow-hidden">
+    <table class="w-full text-sm"><thead class="bg-gray-50 border-b"><tr><th class="px-4 py-3 text-left font-medium text-gray-600">Question</th><th class="px-4 py-3 text-left font-medium text-gray-600">Assigned To</th><th class="px-4 py-3 text-center font-medium text-gray-600">Published</th><th class="px-4 py-3 text-right font-medium text-gray-600">Actions</th></tr></thead>
+    <tbody class="divide-y"><?php foreach ($faqs ?? [] as $faq): ?><tr class="hover:bg-gray-50"><td class="px-4 py-3 font-medium"><?= esc($faq->question) ?></td><td class="px-4 py-3 text-gray-500 text-xs"><?= esc(($faq->assignable_type ?? 'global') . ' #' . ($faq->assignable_id ?? '')) ?></td><td class="px-4 py-3 text-center"><span class="text-xs px-2 py-0.5 rounded <?= $faq->is_published ? 'bg-green-100 text-green-700' : 'bg-gray-100 text-gray-500' ?>"><?= $faq->is_published ? 'Yes' : 'No' ?></span></td><td class="px-4 py-3 text-right"><a href="/admin/faqs/edit/<?= $faq->id ?>" class="text-bronze hover:underline mr-3">Edit</a><form method="POST" action="/admin/faqs/delete/<?= $faq->id ?>" class="inline" onsubmit="return confirm('Delete?')"><input type="hidden" name="_method" value="POST"><button class="text-red-500 hover:underline text-xs">Delete</button></form></td></tr><?php endforeach; ?></tbody></table>
+</div>

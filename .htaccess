@@ -1,0 +1,14 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /
+
+    # Redirect all requests to the public/ directory (CI4 front controller)
+    RewriteCond %{REQUEST_URI} !^/public/
+    RewriteRule ^(.*)$ public/$1 [L,QSA]
+</IfModule>
+
+# Fallback for servers without mod_rewrite (e.g., some LiteSpeed configs)
+<IfModule !mod_rewrite.c>
+    # If mod_rewrite is not available, ensure public/ is the document root
+    # via Hostinger hPanel → Websites → [Your Site] → General → Document Root
+</IfModule>
