@@ -38,7 +38,7 @@ foreach ($groups as $group => $items) {
         <h3 class="font-semibold text-charcoal mb-4">Introduction Section</h3>
         <div class="space-y-4">
             <div><label class="block text-sm font-medium text-gray-700 mb-1">Heading</label><input type="text" name="intro_heading" value="<?= esc($sLookup['intro_heading'] ?? '') ?>" class="w-full px-4 py-2.5 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-bronze outline-none"></div>
-            <div><label class="block text-sm font-medium text-gray-700 mb-1">Content (HTML)</label><textarea name="intro_content" rows="8" class="w-full px-4 py-2.5 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-bronze outline-none resize-y font-mono"><?= esc($sLookup['intro_content'] ?? '') ?></textarea></div>
+            <div><label class="block text-sm font-medium text-gray-700 mb-1">Content (HTML)</label><textarea name="intro_content" class="wysiwyg-editor"><?= esc($sLookup['intro_content'] ?? '') ?></textarea></div>
             <div class="grid grid-cols-2 gap-4">
                 <div><label class="block text-sm font-medium text-gray-700 mb-1">CTA Label</label><input type="text" name="intro_cta_label" value="<?= esc($sLookup['intro_cta_label'] ?? '') ?>" class="w-full px-4 py-2.5 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-bronze outline-none"></div>
                 <div><label class="block text-sm font-medium text-gray-700 mb-1">CTA URL</label><input type="text" name="intro_cta_url" value="<?= esc($sLookup['intro_cta_url'] ?? '') ?>" class="w-full px-4 py-2.5 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-bronze outline-none"></div>

@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= esc($page_title ?? 'Admin') ?> — <?= esc($site_name ?? 'V P Singh Advocate') ?></title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/tinymce@6/tinymce.min.js" referrerpolicy="origin"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
@@ -186,6 +187,34 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            if (typeof tinymce !== 'undefined') {
+                tinymce.init({
+                    selector: '.wysiwyg-editor',
+                    height: 400,
+                    menubar: false,
+                    plugins: 'lists link image table code codesample fullscreen preview',
+                    toolbar: 'undo redo | blocks | bold italic underline strikethrough | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image table codesample | code fullscreen preview',
+                    content_style: 'body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 14px; }',
+                    setup: function(editor) {
+                        editor.on('change', function() {
+                            editor.save();
+                        });
+                    }
+                });
+            }
+
+            // Sync TinyMCE content back to textareas before form submit
+            document.querySelectorAll('form').forEach(function(form) {
+                form.addEventListener('submit', function() {
+                    if (typeof tinymce !== 'undefined') {
+                        tinymce.triggerSave();
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 
 </html>

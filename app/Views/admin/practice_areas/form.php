@@ -22,7 +22,7 @@
 
     <div class="mt-5">
         <label class="block text-sm font-medium text-gray-700 mb-1">Full Description (HTML)</label>
-        <textarea name="description" rows="10" class="w-full px-4 py-2.5 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-bronze outline-none resize-y font-mono"><?= esc($area->description ?? '') ?></textarea>
+        <textarea name="description" class="wysiwyg-editor"><?= esc($area->description ?? '') ?></textarea>
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-3 gap-5 mt-5">
